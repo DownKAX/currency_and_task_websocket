@@ -12,5 +12,9 @@
   - Пользовательский логгер
 
 ## Запуск
-  1. Используйте в cmd: ```bash git clone https://github.com/DownKAX/currency_and_task_websocket.git
-  2. **(Обязательно)**: активировать виртуальную среду ```bash .venv\Scripts\activate
+  1. Используйте в cmd: 
+```bash
+ git clone https://github.com/DownKAX/currency_and_task_websocket.git
+  2. **(Обязательно)**: активировать виртуальную среду 
+```bash 
+.venv\Scripts\activate
