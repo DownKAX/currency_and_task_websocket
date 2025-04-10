@@ -50,6 +50,7 @@ alembic -c alembic_test.ini downgrade base
 - Для аутентификации используйте `session_token`, полученный после входа (`/auth/login`). 
 - В Postman: после входа перейдите в Cookies → Manage Cookies, чтобы проверить наличие `session_token`.
 - Для WebSocket: используйте вкладку "WebSocket" в Postman.
+- Конечная точка для удаления задачи проверяет определённые права, остальные точки доступны всем зарегестрированным пользователям
 
 ---
 
@@ -171,5 +172,3 @@ alembic -c alembic_test.ini downgrade base
 - **Параметр (query):** `id` → ID задачи.  
 - **Пример:** `/tasks/finish_task?id=1`  
 - **Ответ:** Данные задачи с датой завершения и исполнителем.
-
-```
