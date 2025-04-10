@@ -46,16 +46,16 @@ alembic -c alembic_test.ini upgrade head
 alembic -c alembic_test.ini downgrade base
 ```
 ## Запросы API
-## Общие рекомендации
+### Общие рекомендации
 - Для аутентификации используйте `session_token`, полученный после входа (`/auth/login`). 
 - В Postman: после входа перейдите в Cookies → Manage Cookies, чтобы проверить наличие `session_token`.
 - Для WebSocket: используйте вкладку "WebSocket" в Postman.
 
 ---
 
-## Аутентификация
+### Аутентификация
 
-### 1. Регистрация
+#### 1. Регистрация
 - **Метод:** POST  
 - **URL:** `/auth/register`  
 - **Тело запроса (JSON):**
@@ -68,7 +68,7 @@ alembic -c alembic_test.ini downgrade base
 
 ---
 
-### 2. Вход
+#### 2. Вход
 - **Метод:** POST  
 - **URL:** `/auth/login`  
 - **Тело запроса (form-data):**
@@ -78,9 +78,9 @@ alembic -c alembic_test.ini downgrade base
 
 ---
 
-## Валюты
+### Валюты
 
-### 3. Получить коды валют
+#### 3. Получить коды валют
 - **Метод:** GET  
 - **URL:** `/currency/get_currency_codes`  
 - **Куки:** `session_token` (обязательно).  
@@ -93,7 +93,7 @@ alembic -c alembic_test.ini downgrade base
 
 ---
 
-### 4. Конвертировать валюту
+#### 4. Конвертировать валюту
 - **Метод:** POST  
 - **URL:** `/currency/convert`  
 - **Куки:** `session_token`.  
@@ -114,9 +114,9 @@ alembic -c alembic_test.ini downgrade base
 
 ---
 
-## Задачи
+### Задачи
 
-### 5. Общий чат (WebSocket)
+#### 5. Общий чат (WebSocket)
 - **Тип:** WebSocket  
 - **URL:** `/tasks/general_chat`  
 - **Куки:** `session_token`.  
@@ -124,7 +124,7 @@ alembic -c alembic_test.ini downgrade base
 
 ---
 
-### 6. Создать задачу
+#### 6. Создать задачу
 - **Метод:** POST  
 - **URL:** `/tasks/create_task`  
 - **Куки:** `session_token`.  
@@ -139,7 +139,7 @@ alembic -c alembic_test.ini downgrade base
 
 ---
 
-### 7. Удалить задачу
+#### 7. Удалить задачу
 - **Метод:** DELETE  
 - **URL:** `/tasks/delete_task`  
 - **Куки:** `session_token`.  
@@ -149,7 +149,7 @@ alembic -c alembic_test.ini downgrade base
 
 ---
 
-### 8. Обновить задачу
+#### 8. Обновить задачу
 - **Метод:** PUT  
 - **URL:** `/tasks/update_task`  
 - **Куки:** `session_token`.  
@@ -164,7 +164,7 @@ alembic -c alembic_test.ini downgrade base
 
 ---
 
-### 9. Завершить задачу
+#### 9. Завершить задачу
 - **Метод:** PUT  
 - **URL:** `/tasks/finish_task`  
 - **Куки:** `session_token`.  
