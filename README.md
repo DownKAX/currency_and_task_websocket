@@ -18,13 +18,15 @@
 ```bash
 git clone https://github.com/DownKAX/currency_and_task_websocket.git
 ```
-  3. **(Обязательно)** Активировать виртуальную среду
+  3. Создать и активировать виртуальную среду, загрузить зависимости
 ```bash
-.venv\Scripts\activate
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
 ```
   4. Проект можно запустить либо запустив файл main.py, либо через:
 ```bash
-bash uvicorn main:app --reload
+uvicorn main:app --reload
 ```
 
 ## Тестирование
