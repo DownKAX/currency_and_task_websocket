@@ -1,0 +1,4 @@
+2025-04-10 19:29:56,436 - app.api.middleware.middleware - INFO - Incoming request: GET /
+2025-04-10 19:29:56,436 - app.api.middleware.middleware - INFO - Outgoing response code: 404
+2025-04-10 19:29:57,499 - app.api.middleware.middleware - INFO - Incoming request: GET /favicon.ico
+2025-04-10 19:29:57,499 - app.api.middleware.middleware - INFO - Outgoing response code: 404
