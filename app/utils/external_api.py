@@ -1,4 +1,6 @@
 import httpx
+from fastapi import HTTPException
+
 from app.core.config import settings
 from app.api.models.currency import Currency
 

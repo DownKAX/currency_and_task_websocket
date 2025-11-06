@@ -17,7 +17,7 @@ from datetime import datetime, timedelta
 
 # revision identifiers, used by Alembic.
 revision: str = '1cc8be95b28f'
-down_revision: Union[str, None] = '2f9313691360'
+down_revision: Union[str, None] = '3fb13f1760f7'#'2f9313691360'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -34,10 +34,10 @@ tasks_table = (table(
 
 
 def upgrade() -> None:
-    init_data = [{"id": 1, "title": "Task 1", "description": "Task1 description", "created_by": "user", "finished_by": None, "date_of_start": datetime.utcnow() - timedelta(days=4), "date_of_finish": None},
-                 {"id": 2, "title": "Task 2", "description": "Task2 description", "created_by": "moderator", "finished_by": None, "date_of_start": datetime.utcnow() - timedelta(days=3), "date_of_finish": None},
-                 {"id": 3, "title": "Task 3", "description": "Task3 description", "created_by": "admin", "finished_by": None, "date_of_start": datetime.utcnow() - timedelta(days=2), "date_of_finish": None},
-                 {"id": 4, "title": "Task 4", "description": "Task4 description", "created_by": "moderator", "finished_by": None, "date_of_start": datetime.utcnow() - timedelta(days=1), "date_of_finish": datetime.utcnow()}]
+    init_data = [{"title": "Task 1", "description": "Task1 description", "created_by": "user", "finished_by": None, "date_of_start": datetime.utcnow() - timedelta(days=4), "date_of_finish": None},
+                 {"title": "Task 2", "description": "Task2 description", "created_by": "moderator", "finished_by": None, "date_of_start": datetime.utcnow() - timedelta(days=3), "date_of_finish": None},
+                 {"title": "Task 3", "description": "Task3 description", "created_by": "admin", "finished_by": None, "date_of_start": datetime.utcnow() - timedelta(days=2), "date_of_finish": None},
+                 {"title": "Task 4", "description": "Task4 description", "created_by": "moderator", "finished_by": None, "date_of_start": datetime.utcnow() - timedelta(days=1), "date_of_finish": datetime.utcnow()}]
     op.bulk_insert(tasks_table, init_data)
 
 def downgrade() -> None:

@@ -7,7 +7,7 @@ from fastapi.exceptions import RequestValidationError
 from starlette.responses import JSONResponse
 
 from app.api.endpoints.currency import currency
-from app.api.endpoints.users import auth
+from app.api.auth.register import auth
 from app.api.endpoints.tasks import task
 from app.api.middleware.middleware import logging_middleware, logger
 
@@ -20,7 +20,7 @@ app.middleware('http')(logging_middleware)
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc):
-    if exc._errors[0].get('loc')[1] == 'session_token':
+    if exc._errors[0].get('loc')[0] == 'session_token':
         return JSONResponse({'error': 'No session token!'}, status_code=422)
     else:
         return await request_validation_exception_handler(request, exc)
@@ -33,7 +33,6 @@ async def global_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={"error": "O-o-o-ps! Internal server error"}
     )
-
 
 if __name__ == '__main__':
     uvicorn.run(app,

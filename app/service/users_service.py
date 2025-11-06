@@ -2,7 +2,7 @@ from app.api.models.user import User
 from app.api.models.tasks import Task
 from app.utils.unitofwork import AbstractUnitOfWork
 from app.utils.websocket import WebsocketUtil
-from app.database.data_validators import unique_check, permission_check, existing_check
+from app.service.data_validators import unique_check, permission_check, existing_check
 
 from datetime import datetime
 

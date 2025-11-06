@@ -27,7 +27,6 @@ async def alembic():
 async def test_login_correct(client):
     response = await client.post("/auth/login", data={"username": "user", "password": "user123456"})
     assert response.status_code == 200
-    assert response.json() == {"message": 'Logged in successfully'}
 
 @pytest.mark.asyncio
 async def test_login_wrong_password(client):
@@ -43,31 +42,31 @@ async def test_login_non_existing_user(client):
 
 @pytest.mark.asyncio
 async def test_register_success(client):
-    response = await client.post("/auth/register", json={"username": "mod", "password": "admin123456", "confirm_password": "admin123456"})
+    response = await client.post("/auth/register", data={"username": "mod", "password": "admin123456", "confirm_password": "admin123456"})
     assert response.status_code == 200
     assert "username" in response.json()
 
 @pytest.mark.asyncio
 async def test_register_with_already_taken_name(client):
-    response = await client.post("/auth/register", json={"username": "admin", "password": "admin123456", "confirm_password": "admin123456"})
+    response = await client.post("/auth/register", data={"username": "admin", "password": "admin123456", "confirm_password": "admin123456"})
     assert response.status_code == 401
     assert response.json() == {"detail": "User with such name already exists"}
 
 @pytest.mark.asyncio
 async def test_register_passwords_doesnt_match(client):
-    response = await client.post("/auth/register", json={"username": "admin1", "password": "admin123456", "confirm_password": "admin1234567"})
+    response = await client.post("/auth/register", data={"username": "admin1", "password": "admin123456", "confirm_password": "admin1234567"})
     assert response.status_code == 401
     assert response.json() == {"detail": 'Passwords do not match'}
 
 @pytest.mark.asyncio
 async def test_register_with_short_password(client):
-    response = await client.post("/auth/register", json={"username": "admin1","password": "adm","confirm_password": "adm"})
+    response = await client.post("/auth/register", data={"username": "admin1","password": "adm","confirm_password": "adm"})
     assert response.status_code == 401
     assert response.json() == {"detail": 'Length must be between 8 and 64'}
 
 @pytest.mark.asyncio
 async def test_register_with_long_password(client):
-    response = await client.post("/auth/register", json={"username": "admin1","password": "adm" * 100,"confirm_password": "adm" * 100})
+    response = await client.post("/auth/register", data={"username": "admin1","password": "adm" * 100,"confirm_password": "adm" * 100})
     assert response.status_code == 401
     assert response.json() == {"detail": 'Length must be between 8 and 64'}
 

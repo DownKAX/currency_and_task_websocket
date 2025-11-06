@@ -8,7 +8,7 @@ from alembic import command
 import asyncio
 
 from main import app
-from app.core.security import create_access_token
+from app.api.auth.security import create_access_token
 from app.core.config import settings
 from app.utils.external_api import ExternalAPI
 
@@ -37,7 +37,7 @@ async def create_user_token():
 async def test_get_codes_correct(client, user_session_token):
     with patch('app.utils.external_api.ExternalAPI.get_currency_codes', new_callable=AsyncMock) as mock_get_currency_codes:
         mock_get_currency_codes.return_value = 'mock_list'
-        response = await client.get('/currency/get_currency_codes', headers={"Cookie": f'session_token={user_session_token}'})
+        response = await client.get('/currency/get_currency_codes', cookies={'session_token': user_session_token, 'refresh_token': '0x9'})
         assert response.status_code == 200
         assert 'currencies' in response.json()  # конечная точка(в currency endpoints) возвращает {'currencies': get_currency_codes}
 
@@ -47,6 +47,5 @@ async def test_get_codes_no_token(client):
     with patch('app.utils.external_api.ExternalAPI.get_currency_codes', new_callable=AsyncMock) as mock_get_currency_codes:
         mock_get_currency_codes.return_value = {'currencies': ['mock_code']}
         response = await client.get('/currency/get_currency_codes')
-        print(response)
-        assert response.status_code == 422
-        assert 'error' in response.json()
+        assert response.status_code == 401
+        assert {'detail': 'Token not found'} == response.json()

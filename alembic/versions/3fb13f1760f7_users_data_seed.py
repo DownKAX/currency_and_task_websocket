@@ -16,7 +16,7 @@ from sqlalchemy import String, Integer, DateTime
 
 # revision identifiers, used by Alembic.
 revision: str = '3fb13f1760f7'
-down_revision: Union[str, None] = 'd9834ff44a24'
+down_revision: Union[str, None] = '2f9313691360'#'d9834ff44a24'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -32,9 +32,9 @@ users_table = table('users',
 
 def upgrade() -> None:
     #начальные данные
-    init_data = [{'id': 1, 'username': 'user', 'password': '$2b$12$yuGOqzGv7fxSUIVZk.Il/.b6GGsOri9rHjT3mQjyDA/8X/UarvKNe', 'register_date': datetime.datetime(2025, 3, 26, 12, 30, 35), "role": "user"},
-                 {'id': 2, 'username': 'moderator', 'password': '$2b$12$37i8GzOYNP8IwK8V8uUv6OmcMLS7dIWkrAHahBQbshF./PbSJEjQm', 'register_date': datetime.datetime(2025, 3, 26, 12, 35, 35), "role": "moderator"},
-                 {'id': 3, 'username': 'admin', 'password': '$2b$12$we0s3PMhTsRmHbcTypTtseRGk9eIphUH0l157lMAluUYPOCzvAgsW', 'register_date': datetime.datetime(2025, 3, 26, 12, 40, 35), "role": "admin"}]
+    init_data = [{'username': 'user', 'password': '$2b$12$yuGOqzGv7fxSUIVZk.Il/.b6GGsOri9rHjT3mQjyDA/8X/UarvKNe', 'register_date': datetime.datetime(2025, 3, 26, 12, 30, 35), "role": "user"},
+                 {'username': 'moderator', 'password': '$2b$12$37i8GzOYNP8IwK8V8uUv6OmcMLS7dIWkrAHahBQbshF./PbSJEjQm', 'register_date': datetime.datetime(2025, 3, 26, 12, 35, 35), "role": "moderator"},
+                 {'username': 'admin', 'password': '$2b$12$we0s3PMhTsRmHbcTypTtseRGk9eIphUH0l157lMAluUYPOCzvAgsW', 'register_date': datetime.datetime(2025, 3, 26, 12, 40, 35), "role": "admin"}]
     #вставляем начальные данные
     op.bulk_insert(users_table, init_data)
 
