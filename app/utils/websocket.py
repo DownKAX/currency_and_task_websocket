@@ -1,9 +1,12 @@
+
+
 from fastapi import WebSocket, HTTPException
-from app.core.security import user_data_from_token
+from app.api.auth.security import user_data_from_token
+
 
 class WebsocketUtil:
     def __init__(self):
-        self.websocket_clients: list[SocketClient] = []
+        self.websocket_clients: list = []
 
     async def on_connect(self, websocket: WebSocket, session_token: [str | None]):
         if session_token:

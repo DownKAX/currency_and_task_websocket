@@ -36,8 +36,8 @@ class Repository(AbstractBaseRepository):
     async def add_one(self, data):
         query = insert(self.model).values(**data).returning(self.model) #query - сгенерированный SQL-запрос вставки в модель(таблицу), выполняется, возвращая добавленные данные
         try:
-            result = await self.session.execute(query) #асинхронно выполняем SQL-запрос
-            return result.scalar_one() #возвращаем добавленные данные(одну строку или ошибка)
+            result = await self.session.scalar(query) #асинхронно выполняем SQL-запрос
+            return result #возвращаем добавленные данные(одну строку или ошибка)
         except IntegrityError: #при случае нарушения уникальности данных
             return None
 
