@@ -1,7 +1,11 @@
+__pycache__/*
+*__pycache__*
+*/__pycache__/*
 /.idea
 /.pytest_cache
 /__pycache__
 .env
+.env.test
 database.db
 database_test.db
 /alembic/__pycache__

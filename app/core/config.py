@@ -5,7 +5,6 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     SECRET_KEY: str
     ALGORITHM: str
-    TELEGRAM_API: str
     DB_HOST: str
     DB_PORT: str
     POSTGRES_USER: str
